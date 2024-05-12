@@ -16,6 +16,8 @@
 # Please see /usr/share/doc/nginx-doc/examples/ for more detailed examples.
 ##
 
+# new comment line
+
 # Default server configuration
 #
 server {
