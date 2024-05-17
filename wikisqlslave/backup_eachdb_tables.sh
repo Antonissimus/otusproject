@@ -6,13 +6,13 @@ DIR=`date +"%Y-%m-%d"`
 DATE=`date +"%Y%m%d"`
 MYSQL='mysql --skip-column-names'
 
-`$MYSQL -e "STOP REPLICA"`;
+`mysql -e "STOP REPLICA"`;
 for d in `$MYSQL -e "SHOW DATABASES"`;
 do
-    mkdir $d;
+    mkdir sql_backup/$d;
     for t in `$MYSQL -e "SHOW TABLES from $d"`;
     do
-    /usr/bin/mysqldump --add-drop-table --add-locks --create-options --disable-keys --extended-insert --single-transaction --quick --set-charset --events --routines --triggers $d --tables $t| gzip -1 > $d/$t.gz;
+    /usr/bin/mysqldump --add-drop-table --add-locks --create-options --disable-keys --extended-insert --single-transaction --quick --set-charset --events --routines --triggers $d --tables $t| gzip -1 > sql_backup/$d/$t.gz;
     done
 done
-`$MYSQL -e "START REPLICA"`;
+`mysql -e "START REPLICA"`;
