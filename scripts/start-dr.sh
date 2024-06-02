@@ -122,4 +122,10 @@ mysql -u root bookstack < bookstack.backup.sql
 ENDSSH
 
 # Restore wikimonitor
+
+echo переносим конфигурацию prometheus
+scp -i ~/.ssh/id_rsa_root /home/anton/otusproject/wikimonitor/prometheus/prometheus.yml root@wikiweb:/etc/prometheus/prometheus.yml
+scp -i ~/.ssh/id_rsa_root /home/anton/otusproject/wikimonitor/prometheus/prometheus.service root@wikiweb:/etc/systemd/system/prometheus.service
+ssh -i ~/.ssh/id_rsa_root root@wikiweb "systemctl restart prometheus"
+
 # Restore wikilogs
