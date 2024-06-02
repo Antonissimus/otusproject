@@ -117,7 +117,7 @@ mysql -u root --execute="CREATE USER 'bookstack'@'localhost' IDENTIFIED WITH mys
 mysql -u root --execute="CREATE USER 'bookstack'@'%' IDENTIFIED WITH mysql_native_password BY 'p4ssword';"
 mysql -u root --execute="GRANT ALL ON bookstack.* TO 'bookstack'@'localhost';FLUSH PRIVILEGES;"
 mysql -u root --execute="GRANT ALL ON bookstack.* TO 'bookstack'@'%';FLUSH PRIVILEGES;"
-mysql -u root bookstack < sql_backup/bookstack.backup.sql
+mysql -u root bookstack < /home/anton/sql_backup/bookstack.backup.sql
 
 ENDSSH
 
