@@ -126,6 +126,8 @@
 echo переносим конфигурацию prometheus
 scp -i ~/.ssh/id_rsa_root /home/anton/otusproject/wikimonitor/prometheus/prometheus.yml root@wikimonitor:/etc/prometheus/prometheus.yml
 scp -i ~/.ssh/id_rsa_root /home/anton/otusproject/wikimonitor/prometheus/prometheus.service root@wikimonitor:/etc/systemd/system/prometheus.service
+ssh -i ~/.ssh/id_rsa_root root@wikimonitor "systemctl daemon-reload"
 ssh -i ~/.ssh/id_rsa_root root@wikimonitor "systemctl restart prometheus"
+
 
 # Restore wikilogs
