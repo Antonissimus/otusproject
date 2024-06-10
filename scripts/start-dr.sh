@@ -131,3 +131,18 @@ ssh -i ~/.ssh/id_rsa_root root@wikimonitor "systemctl restart prometheus"
 
 
 # Restore wikilogs
+echo переносим конфигурацию java
+scp -i ~/.ssh/id_rsa_root /home/anton/otusproject/wikilogs/java/jvm.options root@wikilogs:/etc/elasticsearch/jvm.options.d/jvm.options
+
+echo переносим конфигурацию logstash
+scp -i ~/.ssh/id_rsa_root /home/anton/otusproject/wikilogs/logstash/logstash.yml root@wikilogs:/etc/logstash/logstash.yml
+scp -i ~/.ssh/id_rsa_root /home/anton/otusproject/wikilogs/logstash/conf.d root@wikilogs:/etc/logstash/conf.d
+ssh -i ~/.ssh/id_rsa_root root@wikilogs "systemctl restart logstash"
+
+echo переносим конфигурацию elasticsearch
+scp -i ~/.ssh/id_rsa_root /home/anton/otusproject/wikilogs/elasticsearch/elasticsearch.yml root@wikilogs:/etc/elasticsearch/elasticsearch.yml
+ssh -i ~/.ssh/id_rsa_root root@wikilogs "systemctl restart elasticsearch"
+
+echo переносим конфигурацию kibana
+scp -i ~/.ssh/id_rsa_root /home/anton/otusproject/wikilogs/kibana/kibana.yml root@wikilogs:/etc/kibana/kibana.yml
+ssh -i ~/.ssh/id_rsa_root root@wikilogs "systemctl restart kibana"
